@@ -1,0 +1,247 @@
+```python
+# 실행 단축키 : Ctrl + Enter, Alt+Enter, Shift + Enter
+print("python Basic")
+```
+
+    python Basic
+    
+
+
+```python
+# 셀 추가 삭제 단축키 : 
+# a,b ==> 위아래 셀 추가, 
+# 삭제 : dd, x
+# 복사 : c
+# 붙여넣기 : v
+# 라인 번호 확인하기 : l
+# 출력 접어두기 : o
+
+```
+
+
+```python
+# 문법정리
+# 입력, 출력, 저장, 처리
+# 출력1
+# 화면에 출력하기
+# 파일에 출력하기(저장하기)
+
+```
+
+
+```python
+print() # 프린트 명령어
+```
+
+    
+    
+
+
+```python
+print(1234) # 프린트 명령어
+```
+
+    1234
+    
+
+
+```python
+print("Hello") # 프린트 명령어
+```
+
+    Hello
+    
+
+
+```python
+print(1234, "kkkk", sep="")
+```
+
+    1234kkkk
+    
+
+
+```python
+print("Hi", 1234, end="\na123b")
+```
+
+    Hi 1234
+    a123b
+
+
+```python
+#어떤 값을 직접 적어서 사용하지 않는다. <--- 하드 코딩
+import math
+print(3.14)
+print(math.pi)
+```
+
+    3.14
+    3.141592653589793
+    
+
+
+```python
+# 저장 : 변수에 저장한다.
+# 갑을 저장해두는 공간, 그릇, 서랍
+pi=math.pi
+pi=pi.3f
+```
+
+
+      File "C:\Users\tjtmd\AppData\Local\Temp/ipykernel_18308/1740660606.py", line 4
+        pi=pi.3f
+             ^
+    SyntaxError: invalid syntax
+    
+
+
+
+```python
+print(pi)
+```
+
+    3.141592653589793
+    
+
+
+```python
+# 저장할 수 있는 값의 종류!
+# 타입 - Type -Data Type
+```
+
+
+```python
+num=1
+num2 =3.14
+```
+
+
+```python
+str1 = "hi"
+str2 = 'Hi'
+str3="""hi"""
+```
+
+변수명(변수이름, 그릇이름) = 저장할 값
+
+문법적 규칙(안지키면 오류)
+
+관례적 규칙(사람끼리 약속한 것)
+
+1. 대소문자 구분 : A , a
+2. 숫자로 시작불가 : 7a(x)
+3. 특수문자, 띄어쓰기 불가 : _(언더바만 가능)
+4. 예약어 사용 불가: 문법 용어는 변수명으로 사용금지
+관례적 규칙(사람끼리 약속한것
+1. 명사, 동사 사용(형용사 사용 지양)
+2. 지정한 값의 의미를 명확히 나타내기
+3. 표기방법(관례적)
+my name is
+카멜 : myNameIs(함수명)
+파스칼 : MyNameIs(클래스명)
+스네이크 : my_name_is(변수명)
+헝가리안 : stMynameis
+           intMynameis
+           
+
+
+
+```python
+저장(변수)
+출력(print)
+입력(input)
+```
+
+
+```python
+input() # 어떤 값을 입력 받아서 다음에 재활용하고 싶어서
+```
+
+    kkkkk
+    
+
+
+
+
+    'kkkkk'
+
+
+
+
+```python
+# * 아래쪽에 출력 결과가 튀어 나온다면 값을 복사해둔 것이다 
+# *  아래쪽에 뭔가 값이 튀어나온다면 실행 후 반환값이 있다는 것이다.
+```
+
+
+```python
+print()
+```
+
+    
+    
+
+
+```python
+name = input()
+```
+
+    jake
+    
+
+
+```python
+name
+```
+
+
+
+
+    'jake'
+
+
+
+위와 같이 작성하면 뭘 입력하라는지 알 수 없음 
+==>
+
+
+```python
+name = input("이름을 입력하세요 : ")
+```
+
+    이름을 입력하세요 : 제이크
+    
+
+
+```python
+name
+```
+
+
+
+
+    '제이크'
+
+
+
+
+```python
+# 예제1 
+# 사용자로부터 취미를 입력받아 화면에 출력하는 프로그램을 작성하시오
+```
+
+
+```python
+h=input("취미 : ")
+print("너의 취미는", h)
+```
+
+    취미 : 요트
+    너의 취미는 요트
+    
+
+
+```python
+
+```
