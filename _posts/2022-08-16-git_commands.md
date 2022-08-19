@@ -1,3 +1,17 @@
+---
+title: git commands2 - branch
+date: 2022-08-18 15:42:48
+categories :
+- Git
+tags:
+- command
+- vim
+- VCS
+- git settings
+- commit
+- push
+---
+
 ### 커맨드 명령어
 - touch 
 - ls
