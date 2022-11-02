@@ -1,0 +1,5 @@
+Assignment 공지
+
+ 
+
+Assignment : 임의의 Android APK에서 DEX 파일 추출하여 Header 정보와 처음 5개 Method name을 분석하고 APK 파일과 분석 내용을 정리하여 제출하시기 바랍니다.

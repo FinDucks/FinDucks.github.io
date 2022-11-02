@@ -1,0 +1,65 @@
+################## 초기화 ##################
+rm(list=ls()) 
+gc()
+ 
+################## config ##################
+# install.packages("psych")
+# install.packages("psy")
+# install.packages("lmtest")
+# install.packages("Hmisc")
+# install.packages("car")
+# install.packages("REdaS")
+# install.packages("RcppEigen")
+library(psych)
+library(psy)
+library(lmtest)
+library(Hmisc)
+library(car)
+library(REdaS)
+library(RcppEigen)
+
+setwd("D:/private/r/job2/")
+# 독립변수
+#indep_var<-c("possibility","pay","balance","culture","management")
+indep_var<-c("승진기회및가능성","복지및급여","업무와삶의균형","사내문화","경영진")
+# 종속변수
+#dep_var<-c("recommend","expect")
+dep_var<-c("추천여부","향후성장기대여부")
+all_var<-append(indep_var, dep_var)
+
+################## 데이터 적재 ##################
+files<-list.files(pattern = "*.csv")
+data_list<-lapply(files, sep="\t", read.csv, header = TRUE, fileEncoding = "UTF-8")
+jobplanet<-do.call(rbind, data_list)
+colnames(jobplanet)<-c("날짜","회사명","대분류","회사아이디","코멘트아이디","승진기회및가능성", "복지및급여", "업무와삶의균형","사내문화","경영진","추천여부","향후성장기대여부","직업","현재근무유무","지역","도움이돼요갯수","베스트유무")
+str(jobplanet)
+head(jobplanet)
+
+################## 데이터 확인 ##################
+summary(jobplanet)
+#boxplot(jobplanet[,indep_var])
+#hist(jobplanet[,indep_var])
+
+################## 상관분석 ##################
+# cor(jobplanet[,all_var])
+rcorr(as.matrix(jobplanet[,all_var]), type="pearson")
+#install.packages("corrgram")
+#library(corrgram)
+#corrgram(jobplanet[,all_var], upper.panel = panel.conf)
+
+################## 로지스틱 회귀분석 ##################
+# 종속변수 factor 형변환 
+jobplanet[,dep_var] <- lapply(jobplanet[,dep_var], factor)
+str(jobplanet)
+
+recom_model <- glm(formula = 추천여부~., data=jobplanet[,all_var], family = "binomial")
+#step(recom_model, direction = "both")
+summary(recom_model)
+ 
+exp_model <- glm(formula = 향후성장기대여부~., data=jobplanet[,all_var], family = "binomial")
+#step(exp_model, direction = "both")
+summary(exp_model)
+
+################## 결과 ##################
+exp(coef(recom_model))
+exp(coef(exp_model))

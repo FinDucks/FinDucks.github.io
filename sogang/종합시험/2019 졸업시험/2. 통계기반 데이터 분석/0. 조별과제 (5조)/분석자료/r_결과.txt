@@ -1,0 +1,117 @@
+> ################## 상관분석 ##################
+> # cor(jobplanet[,all_var])
+> rcorr(as.matrix(jobplanet[,all_var]), type="pearson")
+                 승진기회및가능성 복지및급여 업무와삶의균형 사내문화 경영진 추천여부 향후성장기대여부
+승진기회및가능성             1.00       0.44           0.28     0.42   0.48     0.39             0.30
+복지및급여                   0.44       1.00           0.34     0.38   0.47     0.46             0.27
+업무와삶의균형               0.28       0.34           1.00     0.54   0.44     0.44             0.19
+사내문화                     0.42       0.38           0.54     1.00   0.59     0.48             0.29
+경영진                       0.48       0.47           0.44     0.59   1.00     0.52             0.39
+추천여부                     0.39       0.46           0.44     0.48   0.52     1.00             0.34
+향후성장기대여부             0.30       0.27           0.19     0.29   0.39     0.34             1.00
+
+n= 133996 
+
+
+P
+                 승진기회및가능성 복지및급여 업무와삶의균형 사내문화 경영진 추천여부 향후성장기대여부
+승진기회및가능성                   0          0              0        0      0        0              
+복지및급여        0                           0              0        0      0        0              
+업무와삶의균형    0                0                         0        0      0        0              
+사내문화          0                0          0                       0      0        0              
+경영진            0                0          0              0               0        0              
+추천여부          0                0          0              0        0               0              
+향후성장기대여부  0                0          0              0        0      0                       
+> ################## 로지스틱 회귀분석 ##################
+> # 종속변수 factor 형변환 
+> jobplanet[,dep_var] <- lapply(jobplanet[,dep_var], factor)
+> str(jobplanet)
+'data.frame':	133996 obs. of  17 variables:
+ $ 날짜            : Factor w/ 1865 levels "2014/10/1","2014/10/10",..: 22 21 15 14 11 11 7 31 29 28 ...
+ $ 회사명          : Factor w/ 327 levels "(유)스태츠칩팩코리아",..: 138 138 138 138 138 138 138 138 138 138 ...
+ $ 대분류          : int  100 100 100 100 100 100 100 100 100 100 ...
+ $ 회사아이디      : int  70749 70749 70749 70749 70749 70749 70749 70749 70749 70749 ...
+ $ 코멘트아이디    : int  50378 49984 48432 48218 47578 47566 46680 45457 44815 44319 ...
+ $ 승진기회및가능성: num  3 3 5 4 2 3 4 3 4 4 ...
+ $ 복지및급여      : num  4 3 5 3 2 3 5 3 4 3 ...
+ $ 업무와삶의균형  : num  3 2 4 3 3 3 4 3 4 3 ...
+ $ 사내문화        : num  3 4 4 4 3 4 4 4 4 2 ...
+ $ 경영진          : num  3 4 4 4 3 3 3 3 4 3 ...
+ $ 추천여부        : Factor w/ 2 levels "0","1": 1 1 1 1 2 2 2 2 2 1 ...
+ $ 향후성장기대여부: Factor w/ 2 levels "0","1": 2 2 2 2 2 2 2 2 2 2 ...
+ $ 직업            : Factor w/ 21 levels "IT/인터넷","경영/기획/컨설팅",..: 10 10 10 10 10 5 10 10 13 10 ...
+ $ 현재근무유무    : Factor w/ 2 levels "전직원","현직원": 2 1 2 2 1 1 1 1 2 1 ...
+ $ 지역            : Factor w/ 20 levels "","강원","경기",..: 3 11 3 3 11 3 10 3 11 3 ...
+ $ 도움이돼요갯수  : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ 베스트유무      : Factor w/ 2 levels "False","True": 1 1 1 1 1 1 1 1 1 1 ...
+> recom_model <- glm(formula = 추천여부~., data=jobplanet[,all_var], family = "binomial")
+> #step(recom_model, direction = "both")
+> summary(recom_model)
+
+Call:
+glm(formula = 추천여부 ~ ., family = "binomial", data = jobplanet[, 
+    all_var])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-3.1668  -0.6712  -0.1389   0.7032   3.4772  
+
+Coefficients:
+                   Estimate Std. Error z value Pr(>|z|)    
+(Intercept)       -8.454155   0.049310 -171.45   <2e-16 ***
+승진기회및가능성   0.338603   0.009130   37.09   <2e-16 ***
+복지및급여         0.636222   0.008181   77.76   <2e-16 ***
+업무와삶의균형     0.475101   0.007276   65.30   <2e-16 ***
+사내문화           0.449763   0.008614   52.21   <2e-16 ***
+경영진             0.511397   0.009399   54.41   <2e-16 ***
+향후성장기대여부1  1.406237   0.024677   56.99   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 184386  on 133995  degrees of freedom
+Residual deviance: 115213  on 133989  degrees of freedom
+AIC: 115227
+
+Number of Fisher Scoring iterations: 5
+
+> exp_model <- glm(formula = 향후성장기대여부~., data=jobplanet[,all_var], family = "binomial")
+> #step(exp_model, direction = "both")
+> summary(exp_model)
+
+Call:
+glm(formula = 향후성장기대여부 ~ ., family = "binomial", data = jobplanet[, 
+    all_var])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-3.3243   0.1672   0.3066   0.6308   1.5393  
+
+Coefficients:
+                  Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      -1.514582   0.028874 -52.455  < 2e-16 ***
+승진기회및가능성  0.279306   0.008897  31.394  < 2e-16 ***
+복지및급여        0.088833   0.007978  11.135  < 2e-16 ***
+업무와삶의균형   -0.100882   0.007549 -13.364  < 2e-16 ***
+사내문화          0.047554   0.008643   5.502 3.76e-08 ***
+경영진            0.783710   0.010894  71.943  < 2e-16 ***
+추천여부1         1.282619   0.023583  54.388  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 133831  on 133995  degrees of freedom
+Residual deviance: 103994  on 133989  degrees of freedom
+AIC: 104008
+
+Number of Fisher Scoring iterations: 6
+
+> ################## 결과 ##################
+> exp(coef(recom_model))
+      (Intercept)  승진기회및가능성        복지및급여    업무와삶의균형          사내문화            경영진 향후성장기대여부1 
+     0.0002130134      1.4029861812      1.8893301891      1.6081773842      1.5679400343      1.6676184289      4.0805730485 
+> exp(coef(exp_model))
+     (Intercept) 승진기회및가능성       복지및급여   업무와삶의균형         사내문화           경영진        추천여부1 
+       0.2199000        1.3222119        1.0928980        0.9040394        1.0487032        2.1895809        3.6060721 

@@ -1,0 +1,12 @@
+1.keypoint
+1)활용되는 곳 
+2)조건
+3)?
+2.Descriptor
+1)생성하는 목적 설명
+2)Scale, Rotation, Brightness/contranst, Noise에 강인하게 
+Descriptor 구성하려할때, 각각의 요소를 반영하기 위해 어떤 처리를 하는지 설명
+3.스킨컬러와 피처방법의 장단점
+4.Ada boost
+5.PCA / LDA 차이
+6.conv/pool/? 레이어에 대해 설명? 
