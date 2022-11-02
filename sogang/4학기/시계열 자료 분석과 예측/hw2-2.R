@@ -19,3 +19,18 @@ reduce1=lm
 predict(full, new=nowele)
 
 
+library(readxl)
+data_election=read_excel("election1.xls")
+attach(data_election)
+out_election=lm(choice~Age65+Urban+ColGrad+Union+Neast+West+Seast)
+out_election=lm(choice~Age65+Urban+ColGrad+Union+factor(Area), data=ele)
+summary(out_election)
+
+step(full, data=ele, direction="backward") #AIC (Backward)
+
+str(full)
+full= lm(formula = choice ~ Age65 + Urban + ColGrad + Union + Neast + 
+     Seast, data = ele)
+vif(full)
+newone_election=data.frame(Age65=17, Urban=79, ColGrad=68, Union=21, Area="MidWest")
+predict(out_election, new=newone_election)

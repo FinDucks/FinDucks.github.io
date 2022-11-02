@@ -75,12 +75,11 @@ plot(fitted(model), residuals(model),xlab="fitted",ylab="residuals") # constant 
 
 # 11) Leverage point 를 이용하여 이상치가 있는지 확인하고, 있다면 몇 번째 값인지 보고하시오.
 ginf=influence(model) 
-ginf$hat
-mean(ginf$hat)
+ginf$hat 
 plot(ginf$hat)
 gs=summary(model)
 gs$sig
-ginf$hat[ginf$hat>0.12]
+ginf$hat[ginf$hat>0.141]
 # 12) studentized deleted residuals 을 이용하여 이상치가 있는지 확인하고, 있다면 몇 번째 값인지 보고하시오.
 r1=rstudent(model) # studentized deleted residuals
 plot(r1)
