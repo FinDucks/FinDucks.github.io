@@ -1,0 +1,26 @@
+ t["vintage"]["wine"]["winery"]["name"],
+        t["vintage"]["year"],
+        t["vintage"]["wine"]["id"],
+        f'{t["vintage"]["wine"]["name"]} {t["vintage"]["year"]}',
+        t["vintage"]["seo_name"],#Wine(eng) 영어이름 위에 이름은 불어등이 불러와짐. 
+        t["vintage"]["statistics"]["ratings_average"],
+        t["vintage"]["statistics"]["ratings_count"],
+        t["vintage"]["image"]["variations"], #["bottle_large"], 추후에 뽑아서 자르는 것 필요
+        #t["vintage"]["wine"]['seo_name'], #이름 추가 뺴도될듯
+        #t["vintage"]["wine"]['region']['country']['most_used_grapes'],#['name']을 추출 필요
+        t["vintage"]["wine"]['taste']['structure']['acidity'],
+        t["vintage"]["wine"]['taste']['structure']['fizziness'],
+        t["vintage"]["wine"]['taste']['structure']['intensity'],
+        t["vintage"]["wine"]['taste']['structure']['sweetness'],
+        t["vintage"]["wine"]['taste']['structure']['tannin'],
+        t["vintage"]["wine"]['taste']['structure']['user_structure_count'],
+        t["vintage"]["wine"]['taste']['structure']['calculated_structure_count'],
+        t["vintage"]["wine"]['taste']['flavor'], # 추후 조금더 나눌 필요가 있지 않을까?
+        t["vintage"]["wine"]['style']['description'],
+        t["vintage"]["wine"]['style']['food'], #['name']  [안에 내용] 이것을 어떻게 처리할지 고민해봐야
+        t["vintage"]["wine"]['style']['grapes'], # ['name'] 위와 같은 문제
+        t["vintage"]["wine"]['style']['region'], #['name'] 지역정보가 없는 애들이 있어서 name을 찾지 못하는경우발생,
+        t["vintage"]["wine"]['style']['region'], #['country']['name'], 같은 문제 발생 
+        t["price"]["url"],
+        #t["vintage"]["statistics"]["ratings_average"],
+        #t["vintage"]["statistics"]["ratings_count"],
